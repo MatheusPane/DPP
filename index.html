@@ -49,21 +49,28 @@
         main {
             padding: 50px;
         }
-        #menu {
+        #about {
             background: rgba(0, 0, 0, 0.6);
             padding: 20px;
             border-radius: 10px;
-            display: inline-block;
+            margin: 20px;
         }
-        #menu h2 {
+        #about h2 {
             color: #ffcc00;
         }
-        #menu ul {
-            list-style: none;
-            padding: 0;
+        #about p {
+            font-size: 18px;
+            line-height: 1.6;
         }
-        #menu ul li {
-            font-size: 20px;
+        #testimonials {
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+        }
+        .testimonial {
+            font-style: italic;
             margin: 10px 0;
         }
         footer {
@@ -79,6 +86,7 @@
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
             <li><a href="order.html">Pesan</a></li>
             <li><a href="login.html">Login</a></li>
             <li><a href="register.html">Register</a></li>
@@ -87,18 +95,19 @@
     
     <header>
         <h1>Selamat Datang di Del Cafe</h1>
-        <p>Tempat terbaik untuk menikmati kopi berkualitas</p>
+        <p>Tempat terbaik untuk menikmati kopi berkualitas dan suasana nyaman.</p>
     </header>
     
     <main>
-        <section id="menu">
-            <h2>Menu Kami</h2>
-            <ul>
-                <li>Kopi Hitam - Rp10.000</li>
-                <li>Cappuccino - Rp15.000</li>
-                <li>Latte - Rp18.000</li>
-                <li>Espresso - Rp12.000</li>
-            </ul>
+        <section id="about">
+            <h2>Tentang Kami</h2>
+            <p>Del Cafe adalah tempat terbaik untuk menikmati berbagai jenis kopi pilihan dengan suasana yang nyaman dan pelayanan terbaik. Kami berkomitmen untuk memberikan pengalaman minum kopi yang tak terlupakan.</p>
+        </section>
+        
+        <section id="testimonials">
+            <h2>Apa Kata Mereka?</h2>
+            <p class="testimonial">"Del Cafe adalah tempat favorit saya untuk bersantai dan menikmati secangkir kopi yang luar biasa!" - Rina</p>
+            <p class="testimonial">"Pelayanan yang ramah dan suasana yang cozy membuat saya betah berlama-lama di sini." - Budi</p>
         </section>
     </main>
     

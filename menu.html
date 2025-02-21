@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Del Cafe</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        h1 {
+            margin-top: 80px;
+            color: #333;
+        }
+        .menu-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .menu-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 250px;
+        }
+        .menu-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .menu-item h3 {
+            margin: 10px 0;
+        }
+        .menu-item button {
+            background: #ffcc00;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cart-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="order.html">Pesan</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+        </ul>
+    </nav>
+    
+    <h1>Menu Kami</h1>
+    <div class="menu-container">
+        <div class="menu-item">
+            <img src="kopi-hitam.jpg" alt="Kopi Hitam">
+            <h3>Kopi Hitam - Rp10.000</h3>
+            <img src="cart-icon.png" alt="Tambah ke Keranjang" class="cart-icon">
+            <button>Pesan</button>
+        </div>
+        <div class="menu-item">
+            <img src="cappuccino.jpg" alt="Cappuccino">
+            <h3>Cappuccino - Rp15.000</h3>
+            <img src="cart-icon.png" alt="Tambah ke Keranjang" class="cart-icon">
+            <button>Pesan</button>
+        </div>
+        <div class="menu-item">
+            <img src="latte.jpg" alt="Latte">
+            <h3>Latte - Rp18.000</h3>
+            <img src="cart-icon.png" alt="Tambah ke Keranjang" class="cart-icon">
+            <button>Pesan</button>
+        </div>
+        <div class="menu-item">
+            <img src="espresso.jpg" alt="Espresso">
+            <h3>Espresso - Rp12.000</h3>
+            <img src="cart-icon.png" alt="Tambah ke Keranjang" class="cart-icon">
+            <button>Pesan</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Del Cafe. All rights reserved.</p>
+    </footer>
+</body>
+</html>
