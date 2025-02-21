@@ -58,10 +58,17 @@
         }
         .menu-item img {
             width: 100%;
+            height: 200px; /* Ukuran gambar seragam */
+            object-fit: cover; /* Agar gambar tidak terdistorsi */
             border-radius: 10px;
         }
         .menu-item h3 {
             margin: 10px 0;
+        }
+        .menu-item .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+            margin-right: 10px;
         }
         .menu-item button {
             background: #ffcc00;
@@ -69,11 +76,7 @@
             padding: 10px;
             border-radius: 5px;
             cursor: pointer;
-        }
-        .cart-icon {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
+            font-size: 16px;
         }
         footer {
             background: #333;
@@ -101,25 +104,25 @@
         <div class="menu-item">
             <img src="kopi-hitam.jpg" alt="Kopi Hitam">
             <h3>Kopi Hitam - Rp10.000</h3>
-            <img src="cart-icon.png" alt="Tambah ke Keranjang" class="cart-icon">
+            <span class="cart-icon">🛒</span>
             <button>Pesan</button>
         </div>
         <div class="menu-item">
             <img src="cappuccino.jpg" alt="Cappuccino">
             <h3>Cappuccino - Rp15.000</h3>
-            <img src="cart-icon.png" alt="Tambah ke Keranjang" class="cart-icon">
+            <span class="cart-icon">🛒</span>
             <button>Pesan</button>
         </div>
         <div class="menu-item">
             <img src="latte.jpg" alt="Latte">
             <h3>Latte - Rp18.000</h3>
-            <img src="cart-icon.png" alt="Tambah ke Keranjang" class="cart-icon">
+            <span class="cart-icon">🛒</span>
             <button>Pesan</button>
         </div>
         <div class="menu-item">
             <img src="espresso.jpg" alt="Espresso">
             <h3>Espresso - Rp12.000</h3>
-            <img src="cart-icon.png" alt="Tambah ke Keranjang" class="cart-icon">
+            <span class="cart-icon">🛒</span>
             <button>Pesan</button>
         </div>
     </div>
