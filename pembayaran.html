@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran - Del Cafe</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        h1 {
+            margin-top: 80px;
+            color: #333;
+        }
+        .payment-container {
+            width: 50%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .pay-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="cart.html">Keranjang</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <h1>Pembayaran</h1>
+    <div class="payment-container">
+        <h3>Total Pembayaran: <span id="totalHarga">Rp0</span></h3>
+        
+        <label>Nama Lengkap:</label>
+        <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
+
+        <label>Metode Pembayaran:</label>
+        <select id="metodePembayaran">
+            <option value="transfer">Transfer Bank</option>
+            <option value="ewallet">E-Wallet</option>
+            <option value="cod">Bayar di Tempat</option>
+        </select>
+
+        <button class="pay-btn" onclick="prosesPembayaran()">Bayar Sekarang</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Del Cafe. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function loadTotalHarga() {
+        let total = localStorage.getItem("totalHarga") || 0;
+        document.getElementById("totalHarga").innerText = "Rp" + parseInt(total).toLocaleString("id-ID");
+    }
+
+    function prosesPembayaran() {
+        let nama = document.getElementById("nama").value;
+        let metode = document.getElementById("metodePembayaran").value;
+        let total = document.getElementById("totalHarga").innerText;
+
+        if (nama.trim() === "") {
+            alert("Harap masukkan nama Anda!");
+            return;
+        }
+
+        alert(`Berhasil Dibayar, Mohon menunggu yaaa!\nNama: ${nama}\nMetode: ${metode}\nTotal: ${total}`);
+
+        // Kosongkan keranjang setelah pembayaran
+        localStorage.removeItem("cart");
+        localStorage.removeItem("totalHarga");
+
+        // Arahkan ke halaman utama
+        window.location.href = "index.html";
+    }
+
+    window.onload = loadTotalHarga;
+    </script>
+</body>
+</html>

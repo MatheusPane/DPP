@@ -41,6 +41,13 @@
             margin-top: 80px;
             color: #333;
         }
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
         .menu-container {
             display: flex;
             flex-wrap: wrap;
@@ -48,35 +55,59 @@
             gap: 20px;
             padding: 20px;
         }
+
         .menu-item {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
             width: 250px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 15px;
         }
+
         .menu-item img {
             width: 100%;
-            height: 200px; /* Ukuran gambar seragam */
-            object-fit: cover; /* Agar gambar tidak terdistorsi */
-            border-radius: 10px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
         }
+
         .menu-item h3 {
+            font-size: 18px;
             margin: 10px 0;
         }
-        .menu-item .cart-icon {
-            font-size: 24px;
-            cursor: pointer;
-            margin-right: 10px;
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
         }
-        .menu-item button {
-            background: #ffcc00;
-            border: none;
+
+        .button-container button {
+            flex: 1;
             padding: 10px;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
+        }
+
+        .cart-button {
+            background-color: #ff9809;
+            color: white;
+        }
+
+        .cart-button:hover {
+            background-color: #000000;
+        }
+
+        .order-button {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .order-button:hover {
+            background-color: #000000;
         }
         footer {
             background: #333;
@@ -93,42 +124,87 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="menu.html">Menu</a></li>
-            <li><a href="order.html">Pesan</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="register.html">Register</a></li>
+            <li><a href="cart.html">Keranjang (<span id="cart-count">0</span>)</a></li>
         </ul>
     </nav>
-    
+
     <h1>Menu Kami</h1>
+
     <div class="menu-container">
         <div class="menu-item">
             <img src="kopi-hitam.jpg" alt="Kopi Hitam">
             <h3>Kopi Hitam - Rp10.000</h3>
-            <span class="cart-icon">🛒</span>
-            <button>Pesan</button>
+            <div class="button-container">
+                <button class="cart-button" onclick="addToCart('Kopi Hitam', 10000, 'kopi-hitam.jpg')">Tambah ke Keranjang</button>
+                <button class="order-button" onclick="orderNow('Kopi Hitam', 10000, 'kopi-hitam.jpg')">Pesan</button>
+            </div>
         </div>
         <div class="menu-item">
             <img src="cappuccino.jpg" alt="Cappuccino">
             <h3>Cappuccino - Rp15.000</h3>
-            <span class="cart-icon">🛒</span>
-            <button>Pesan</button>
+            <div class="button-container">
+                <button class="cart-button" onclick="addToCart('Cappuccino', 15000, 'cappuccino.jpg')">Tambah ke Keranjang</button>
+                <button class="order-button" onclick="orderNow('Cappuccino', 15000, 'cappuccino.jpg')">Pesan</button>
+            </div>
         </div>
         <div class="menu-item">
             <img src="latte.jpg" alt="Latte">
             <h3>Latte - Rp18.000</h3>
-            <span class="cart-icon">🛒</span>
-            <button>Pesan</button>
+            <div class="button-container">
+                <button class="cart-button" onclick="addToCart('Latte', 18000, 'latte.jpg')">Tambah ke Keranjang</button>
+                <button class="order-button" onclick="orderNow('Latte', 18000, 'latte.jpg')">Pesan</button>
+            </div>
         </div>
         <div class="menu-item">
             <img src="espresso.jpg" alt="Espresso">
-            <h3>Espresso - Rp12.000</h3>
-            <span class="cart-icon">🛒</span>
-            <button>Pesan</button>
+            <h3>Espresso - Rp20.000</h3>
+            <div class="button-container">
+                <button class="cart-button" onclick="addToCart('Espresso', 20000, 'espresso.jpg')">Tambah ke Keranjang</button>
+                <button class="order-button" onclick="orderNow('Espresso', 20000, 'espresso.jpg')">Pesan</button>
+            </div>
         </div>
     </div>
-    
+
+    <div class="cart-container">
+        <a href="cart.html" class="cart-button">Lihat Keranjang</a>
+    </div>
+
     <footer>
         <p>&copy; 2025 Del Cafe. All rights reserved.</p>
     </footer>
+
+    <script>
+        function updateCartCount() {
+            let keranjang = JSON.parse(sessionStorage.getItem("keranjang")) || [];
+            let cartCountElement = document.getElementById("cart-count");
+            if (cartCountElement) {
+                cartCountElement.textContent = keranjang.length;
+            }
+        }
+
+        function addToCart(nama, harga, gambar) {
+            let keranjang = JSON.parse(sessionStorage.getItem("keranjang")) || [];
+            let itemIndex = keranjang.findIndex(item => item.nama === nama);
+
+            if (itemIndex !== -1) {
+                keranjang[itemIndex].jumlah += 1; 
+            } else {
+                keranjang.push({ nama, harga, jumlah: 1, gambar });
+            }
+
+            sessionStorage.setItem("keranjang", JSON.stringify(keranjang));
+            alert(nama + " telah ditambahkan ke keranjang!");
+            updateCartCount();
+        }
+
+        function orderNow(nama, harga, gambar) {
+            addToCart(nama, harga, gambar);
+            setTimeout(() => {
+                window.location.href = "cart.html";
+            }, 500);
+        }
+
+        updateCartCount();
+    </script>
 </body>
 </html>
