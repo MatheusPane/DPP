@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +6,8 @@
     <title>Register - Del Cafe</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
+            font-family: 'Times New Roman', serif;
+            background-color: #f5f5dc;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,38 +21,45 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 400px;
+            border: 2px solid #8b4513;
         }
         .logo {
             text-align: center;
             margin-bottom: 20px;
         }
         .logo img {
-            width: 120px; /* Adjust logo size */
+            width: 120px;
+            border: 3px solid #8b4513;
+            border-radius: 50%;
         }
         h2 {
             text-align: center;
-            color: #333;
+            color: #8b4513;
+            font-weight: bold;
         }
         input {
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border: 1px solid #ddd;
+            border: 1px solid #8b4513;
             border-radius: 4px;
             box-sizing: border-box;
+            background-color: #fff8dc;
+            color: #5a3e1b;
         }
         button {
             width: 100%;
             padding: 12px;
-            background-color: #1DB954;
+            background-color: #8b4513;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            font-weight: bold;
         }
         button:hover {
-            background-color: #1ed760;
+            background-color: #a0522d;
         }
     </style>
 </head>
@@ -61,12 +68,12 @@
         <div class="logo">
             <img src="PK.PNG" alt="Del Cafe Logo">
         </div>
-        <h2>Register</h2>
+        <h2>Daftar</h2>
         <form action="#" method="post">
-            <input type="text" placeholder="Username" required>
+            <input type="text" placeholder="Nama Pengguna" required>
             <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <button type="submit">Register</button>
+            <input type="password" placeholder="Kata Sandi" required>
+            <button type="submit">Daftar</button>
         </form>
     </div>
 </body>

@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Del Cafe</title>
+    <title>Del Cafe - Nostalgia Kantin</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Global styles */
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
-            background: url('cafe-bg.jpg') no-repeat center center/cover;
+            background: #f8f1e5 url('bg.jpg') no-repeat center center/cover;
             color: #333;
             text-align: center;
         }
 
         /* Navigation */
         nav {
-            background: #2c3e50; /* Deep blue-green */
+            background: #5C6E58; /* Hijau Lumut */
             padding: 15px 0;
             position: fixed;
             width: 100%;
@@ -31,25 +31,21 @@
             padding: 0;
             margin: 0;
             display: flex;
-            justify-content: center; /* This centers the menu items horizontally */
+            justify-content: center;
             align-items: center;
         }
         nav ul li {
             margin: 0 25px;
         }
         nav ul li a {
-            color: #fff; /* White text color for navigation */
+            color: #E9B44C; /* Oranye Kuning Pudar */
             text-decoration: none;
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             transition: color 0.3s;
         }
         nav ul li a:hover {
-            color: #f39c12; /* Gold accent */
-        }
-        nav ul img {
-            height: 40px; /* Adjust logo size */
-            margin-left: 20px; /* Ensure logo has some space from left side */
+            color: #fff;
         }
 
         /* Header */
@@ -58,56 +54,44 @@
             justify-content: center;
             align-items: center;
             padding: 80px 40px;
-            background: url('j.jpg') no-repeat center center/cover; /* Set background image */
-            height: 400px; /* Adjust height */
+            background: url('kantin-old.jpg') no-repeat center center/cover;
+            height: 400px;
             text-align: center;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
         header h1 {
-            margin-top: 0;
-            color: #ffffff; /* White color for title */
-            font-size: 3em;
-            font-weight: 700;
+            font-size: 3.5em;
+            font-weight: bold;
             text-transform: uppercase;
         }
 
         /* Main content */
         main {
             padding: 70px 20px;
-            background-color: #ecf0f1; /* Light gray background */
+            background: rgba(255, 255, 255, 0.9);
         }
-        #about {
-            background: #ffffff;
+        #about, #testimonials {
+            background: #FAF3DD;
             padding: 30px;
             border-radius: 10px;
             margin: 20px auto;
             max-width: 900px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            font-style: italic;
         }
-        #about h2 {
-            color: #2c3e50; /* Dark gray for headings */
+        #about h2, #testimonials h2 {
+            color: #3A506B;
         }
-        #about p {
+        #about p, .testimonial {
             font-size: 18px;
             line-height: 1.6;
             color: #555;
         }
-        #testimonials {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            margin: 20px auto;
-            max-width: 900px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .testimonial {
-            font-style: italic;
-            margin: 15px 0;
-            color: #7f8c8d;
-        }
 
         /* Footer */
         footer {
-            background: #2c3e50; /* Same as the nav background */
+            background: #5C6E58;
             padding: 20px;
             color: #fff;
             text-align: center;
@@ -117,10 +101,8 @@
 <body>
     <nav>
         <ul>
-            <img src="PK.png" alt="Logo Del Cafe">
             <li><a href="index.html">Home</a></li>
             <li><a href="menu.html">Menu</a></li>
-            <li><a href="order.html">Pesan</a></li>
             <li><a href="login.html">Login</a></li>
             <li><a href="register.html">Register</a></li>
         </ul>
@@ -133,18 +115,18 @@
     <main>
         <section id="about">
             <h2>Tentang Kami</h2>
-            <p>Del Cafe adalah tempat terbaik untuk menikmati berbagai jenis kopi pilihan dengan suasana yang nyaman dan pelayanan terbaik. Kami berkomitmen untuk memberikan pengalaman minum kopi yang tak terlupakan.</p>
+            <p>Del Cafe menghadirkan kembali suasana kantin lama yang penuh kenangan dengan nuansa klasik dan menu tradisional favorit Anda.</p>
         </section>
         
         <section id="testimonials">
             <h2>Apa Kata Mereka?</h2>
-            <p class="testimonial">"Del Cafe adalah tempat favorit saya untuk bersantai dan menikmati secangkir kopi yang luar biasa!" - Rina</p>
-            <p class="testimonial">"Pelayanan yang ramah dan suasana yang cozy membuat saya betah berlama-lama di sini." - Budi</p>
+            <p class="testimonial">"Seperti kembali ke masa sekolah! Nostalgia banget." - Rina</p>
+            <p class="testimonial">"Nuansa kantin lawasnya bikin betah nongkrong lama!" - Budi</p>
         </section>
     </main>
     
     <footer>
-        <p>&copy; 2025 Del Cafe. All rights reserved.</p>
+        <p>&copy; 2025 Del Cafe. Nostalgia Kantin Lama.</p>
     </footer>
 </body>
 </html>
