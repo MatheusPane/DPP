@@ -6,85 +6,118 @@
     <title>Del Cafe</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* Global styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background: url('cafe-bg.jpg') no-repeat center center/cover;
-            color: white;
+            color: #333;
             text-align: center;
         }
+
+        /* Navigation */
         nav {
-            background: rgba(0, 0, 0, 0.7);
+            background: #2c3e50; /* Deep blue-green */
             padding: 15px 0;
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
+            z-index: 1000;
         }
         nav ul {
             list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
-            justify-content: center;
+            justify-content: center; /* This centers the menu items horizontally */
+            align-items: center;
         }
         nav ul li {
-            margin: 0 20px;
+            margin: 0 25px;
         }
         nav ul li a {
-            color: white;
+            color: #fff; /* White text color for navigation */
             text-decoration: none;
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 600;
             transition: color 0.3s;
         }
         nav ul li a:hover {
-            color: #ffcc00;
+            color: #f39c12; /* Gold accent */
         }
+        nav ul img {
+            height: 40px; /* Adjust logo size */
+            margin-left: 20px; /* Ensure logo has some space from left side */
+        }
+
+        /* Header */
         header {
-            padding: 100px 20px;
-            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 40px;
+            background: url('j.jpg') no-repeat center center/cover; /* Set background image */
+            height: 400px; /* Adjust height */
+            text-align: center;
         }
+        header h1 {
+            margin-top: 0;
+            color: #ffffff; /* White color for title */
+            font-size: 3em;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Main content */
         main {
-            padding: 50px;
+            padding: 70px 20px;
+            background-color: #ecf0f1; /* Light gray background */
         }
         #about {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
+            background: #ffffff;
+            padding: 30px;
             border-radius: 10px;
-            margin: 20px;
+            margin: 20px auto;
+            max-width: 900px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
         #about h2 {
-            color: #ffcc00;
+            color: #2c3e50; /* Dark gray for headings */
         }
         #about p {
             font-size: 18px;
             line-height: 1.6;
+            color: #555;
         }
         #testimonials {
-            background: rgba(255, 255, 255, 0.8);
-            color: black;
-            padding: 20px;
+            background: #ffffff;
+            padding: 30px;
             border-radius: 10px;
-            margin: 20px;
+            margin: 20px auto;
+            max-width: 900px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
         .testimonial {
             font-style: italic;
-            margin: 10px 0;
+            margin: 15px 0;
+            color: #7f8c8d;
         }
+
+        /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.7);
+            background: #2c3e50; /* Same as the nav background */
             padding: 20px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            color: #fff;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <nav>
         <ul>
+            <img src="PK.png" alt="Logo Del Cafe">
             <li><a href="index.html">Home</a></li>
             <li><a href="menu.html">Menu</a></li>
             <li><a href="order.html">Pesan</a></li>
@@ -95,7 +128,6 @@
     
     <header>
         <h1>Selamat Datang di Del Cafe</h1>
-        <p>Tempat terbaik untuk menikmati kopi berkualitas dan suasana nyaman.</p>
     </header>
     
     <main>
