@@ -3,20 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemesanan - Del Cafe</title>
+    <title>Pesan Produk - Del Cafe</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f8e8c8;
+        }
+        .container {
+            background: #fff3d4;
+            width: 50%;
+            margin: 80px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        img {
+            width: 150px;
+            border-radius: 10px;
+        }
+        input {
+            width: 50px;
+            text-align: center;
+            font-size: 18px;
+            margin: 10px;
+        }
+        .btn {
+            background: #8b5e3b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background: #6b4226;
+        }
+    </style>
 </head>
 <body>
-    <h2>Pemesanan</h2>
-    <form action="#" method="post">
-        <label for="menu">Pilih Menu:</label>
-        <select id="menu" name="menu">
-            <option value="kopi">Kopi Hitam</option>
-            <option value="cappuccino">Cappuccino</option>
-            <option value="latte">Latte</option>
-            <option value="espresso">Espresso</option>
-        </select>
-        <input type="number" placeholder="Jumlah" required>
-        <button type="submit">Pesan Sekarang</button>
-    </form>
+
+    <div class="container">
+        <h1>Pesan Produk</h1>
+        <img id="productImage" src="" alt="Produk">
+        <h2 id="productName"></h2>
+        <p>Harga: <span id="productPrice"></span> per item</p>
+
+        <label for="quantity">Jumlah: </label>
+        <input type="number" id="quantity" value="1" min="1">
+
+        <h3>Total: <span id="totalPrice"></span></h3>
+
+        <button class="btn" onclick="proceedToPayment()">Lanjut ke Pembayaran</button>
+    </div>
+
+    <script>
+        // Ambil data produk dari localStorage
+        let product = JSON.parse(localStorage.getItem("orderItem"));
+
+        if (product) {
+            document.getElementById("productImage").src = product.gambar;
+            document.getElementById("productName").innerText = product.nama;
+            document.getElementById("productPrice").innerText = "Rp" + product.harga.toLocaleString("id-ID");
+            document.getElementById("totalPrice").innerText = "Rp" + product.harga.toLocaleString("id-ID");
+
+            // Update total harga saat jumlah berubah
+            document.getElementById("quantity").addEventListener("input", function () {
+                let jumlah = parseInt(this.value);
+                let totalHarga = jumlah * product.harga;
+                document.getElementById("totalPrice").innerText = "Rp" + totalHarga.toLocaleString("id-ID");
+            });
+        }
+
+        function proceedToPayment() {
+            let jumlah = parseInt(document.getElementById("quantity").value);
+            let totalHarga = jumlah * product.harga;
+
+            // Simpan total harga untuk halaman pembayaran
+            localStorage.setItem("totalHarga", totalHarga);
+
+            // Arahkan ke halaman pembayaran
+            window.location.href = "pembayaran.html";
+        }
+    </script>
+
 </body>
 </html>

@@ -237,11 +237,12 @@
             updateCartCount();
         }
         function orderNow(nama, harga, gambar) {
-            addToCart(nama, harga, gambar);
-            setTimeout(() => {
-                window.location.href = "cart.html";
-            }, 500);
-        }
+    // Simpan data sementara di localStorage
+    localStorage.setItem("orderItem", JSON.stringify({ nama, harga, gambar }));
+    // Arahkan ke halaman order.html
+    window.location.href = "order.html";
+    }
+
         updateCartCount();
     </script>
 </body>

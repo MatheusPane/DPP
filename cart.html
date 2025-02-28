@@ -6,10 +6,12 @@
     <title>Keranjang - Del Cafe</title>
     <style>
         body {
-            font-family: 'Courier New', monospace;
+            font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f5e6cc;
             color: #5a3e1b;
+            margin: 0;
+            padding: 0;
         }
         nav {
             background: #8b5a2b;
@@ -21,6 +23,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
         }
         nav a {
             color: #fff5e1;
@@ -39,13 +43,13 @@
             border: 2px solid #5a3e1b;
         }
         .cart-container {
-            margin-top: 100px;
-            width: 60%;
+            margin: 120px auto 20px;
+            width: 80%;
+            max-width: 600px;
             background: #fff5e1;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-            display: inline-block;
         }
         .cart-item {
             display: flex;
@@ -53,6 +57,7 @@
             justify-content: space-between;
             padding: 10px;
             border-bottom: 1px dashed #8b5a2b;
+            flex-wrap: wrap;
         }
         .cart-item img {
             width: 50px;
@@ -74,7 +79,7 @@
             padding: 5px;
             cursor: pointer;
             font-size: 16px;
-            width: 25px;
+            width: 30px;
         }
         .checkout-btn {
             background: #28a745;
@@ -84,6 +89,7 @@
             cursor: pointer;
             border-radius: 5px;
             font-size: 16px;
+            margin-top: 15px;
         }
         .checkbox {
             margin-right: 10px;
@@ -106,12 +112,9 @@
 
     <script>
         let selectedItems = [];
-
         function tampilkanKeranjang() {
             let keranjang = JSON.parse(sessionStorage.getItem("keranjang")) || [];
             let cartContainer = document.getElementById("cart-container");
-            let totalHarga = 0;
-
             cartContainer.innerHTML = "";
             keranjang.forEach((item, index) => {
                 let checked = selectedItems.includes(index) ? "checked" : "";
@@ -125,7 +128,6 @@
                         <button onclick="hapusItem(${index})">Hapus</button>
                     </div>`;
             });
-
             hitungTotal();
             document.getElementById("cart-count").textContent = keranjang.length;
         }
@@ -159,11 +161,9 @@
         function hitungTotal() {
             let keranjang = JSON.parse(sessionStorage.getItem("keranjang")) || [];
             let total = 0;
-
             selectedItems.forEach(index => {
                 total += keranjang[index].harga * keranjang[index].jumlah;
             });
-
             document.getElementById("total-harga").textContent = total.toLocaleString();
         }
 
@@ -172,10 +172,8 @@
                 alert("Pilih minimal 1 item untuk checkout!");
                 return;
             }
-
             let keranjang = JSON.parse(sessionStorage.getItem("keranjang")) || [];
             let total = selectedItems.reduce((sum, index) => sum + (keranjang[index].harga * keranjang[index].jumlah), 0);
-
             localStorage.setItem("totalHarga", total);
             window.location.href = "pembayaran.html";
         }
