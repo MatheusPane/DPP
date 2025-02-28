@@ -49,6 +49,7 @@
         }
         .cart-item {
             display: flex;
+            align-items: center;
             justify-content: space-between;
             padding: 10px;
             border-bottom: 1px dashed #8b5a2b;
@@ -66,6 +67,15 @@
             cursor: pointer;
             border-radius: 5px;
         }
+        .quantity-btn {
+            background: #8b5a2b;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 25px;
+        }
         .checkout-btn {
             background: #28a745;
             color: white;
@@ -74,6 +84,9 @@
             cursor: pointer;
             border-radius: 5px;
             font-size: 16px;
+        }
+        .checkbox {
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -92,6 +105,8 @@
     <button class="checkout-btn" onclick="goToPayment()">Bayar Sekarang</button>
 
     <script>
+        let selectedItems = [];
+
         function tampilkanKeranjang() {
             let keranjang = JSON.parse(sessionStorage.getItem("keranjang")) || [];
             let cartContainer = document.getElementById("cart-container");
@@ -99,39 +114,69 @@
 
             cartContainer.innerHTML = "";
             keranjang.forEach((item, index) => {
-                totalHarga += item.harga * item.jumlah;
+                let checked = selectedItems.includes(index) ? "checked" : "";
                 cartContainer.innerHTML += `
                     <div class="cart-item">
+                        <input type="checkbox" class="checkbox" onchange="toggleSelect(${index})" ${checked}>
                         <img src="${item.gambar}" alt="${item.nama}">
-                        <span>${item.nama} - Rp${(item.harga * item.jumlah).toLocaleString()} (x${item.jumlah})</span>
+                        <span>${item.nama} - Rp${(item.harga * item.jumlah).toLocaleString()} (x<span id="jumlah-${index}">${item.jumlah}</span>)</span>
+                        <button class="quantity-btn" onclick="ubahJumlah(${index}, -1)">➖</button>
+                        <button class="quantity-btn" onclick="ubahJumlah(${index}, 1)">➕</button>
                         <button onclick="hapusItem(${index})">Hapus</button>
                     </div>`;
             });
 
-            document.getElementById("total-harga").textContent = totalHarga.toLocaleString();
+            hitungTotal();
             document.getElementById("cart-count").textContent = keranjang.length;
+        }
+
+        function toggleSelect(index) {
+            if (selectedItems.includes(index)) {
+                selectedItems = selectedItems.filter(i => i !== index);
+            } else {
+                selectedItems.push(index);
+            }
+            hitungTotal();
+        }
+
+        function ubahJumlah(index, perubahan) {
+            let keranjang = JSON.parse(sessionStorage.getItem("keranjang")) || [];
+            if (keranjang[index].jumlah + perubahan > 0) {
+                keranjang[index].jumlah += perubahan;
+                sessionStorage.setItem("keranjang", JSON.stringify(keranjang));
+                tampilkanKeranjang();
+            }
         }
 
         function hapusItem(index) {
             let keranjang = JSON.parse(sessionStorage.getItem("keranjang")) || [];
             keranjang.splice(index, 1);
             sessionStorage.setItem("keranjang", JSON.stringify(keranjang));
+            selectedItems = selectedItems.filter(i => i !== index);
             tampilkanKeranjang();
         }
 
-        function goToPayment() {
+        function hitungTotal() {
             let keranjang = JSON.parse(sessionStorage.getItem("keranjang")) || [];
-            let total = keranjang.reduce((sum, item) => sum + (item.harga * item.jumlah), 0);
+            let total = 0;
 
-            if (keranjang.length === 0) {
-                alert("Keranjang masih kosong!");
+            selectedItems.forEach(index => {
+                total += keranjang[index].harga * keranjang[index].jumlah;
+            });
+
+            document.getElementById("total-harga").textContent = total.toLocaleString();
+        }
+
+        function goToPayment() {
+            if (selectedItems.length === 0) {
+                alert("Pilih minimal 1 item untuk checkout!");
                 return;
             }
 
-            // Simpan total harga ke localStorage
-            localStorage.setItem("totalHarga", total);
+            let keranjang = JSON.parse(sessionStorage.getItem("keranjang")) || [];
+            let total = selectedItems.reduce((sum, index) => sum + (keranjang[index].harga * keranjang[index].jumlah), 0);
 
-            // Arahkan ke halaman pembayaran
+            localStorage.setItem("totalHarga", total);
             window.location.href = "pembayaran.html";
         }
 
