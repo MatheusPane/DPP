@@ -26,6 +26,10 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
+        nav div{
+            display: flex;
+            gap: 15px;
+        }
         nav a {
             color: #fff5e1;
             text-decoration: none;
@@ -33,6 +37,7 @@
             font-weight: bold;
             margin: 0 20px;
         }
+       
         .cart-button {
             background: #ffcc00;
             color: black;
@@ -41,6 +46,7 @@
             font-weight: bold;
             cursor: pointer;
             border: 2px solid #5a3e1b;
+            margin-right: 5em; /* Menjauhkan tombol dari sisi kanan */
         }
         .cart-container {
             margin: 120px auto 20px;
@@ -94,6 +100,17 @@
         .checkbox {
             margin-right: 10px;
         }
+        .quantity-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.quantity-btn:focus {
+    outline: none;
+}
     </style>
 </head>
 <body>
@@ -113,24 +130,32 @@
     <script>
         let selectedItems = [];
         function tampilkanKeranjang() {
-            let keranjang = JSON.parse(sessionStorage.getItem("keranjang")) || [];
-            let cartContainer = document.getElementById("cart-container");
-            cartContainer.innerHTML = "";
-            keranjang.forEach((item, index) => {
-                let checked = selectedItems.includes(index) ? "checked" : "";
-                cartContainer.innerHTML += `
-                    <div class="cart-item">
-                        <input type="checkbox" class="checkbox" onchange="toggleSelect(${index})" ${checked}>
-                        <img src="${item.gambar}" alt="${item.nama}">
-                        <span>${item.nama} - Rp${(item.harga * item.jumlah).toLocaleString()} (x<span id="jumlah-${index}">${item.jumlah}</span>)</span>
-                        <button class="quantity-btn" onclick="ubahJumlah(${index}, -1)">➖</button>
-                        <button class="quantity-btn" onclick="ubahJumlah(${index}, 1)">➕</button>
-                        <button onclick="hapusItem(${index})">Hapus</button>
-                    </div>`;
-            });
-            hitungTotal();
-            document.getElementById("cart-count").textContent = keranjang.length;
-        }
+    let keranjang = JSON.parse(sessionStorage.getItem("keranjang")) || [];
+    let cartContainer = document.getElementById("cart-container");
+    cartContainer.innerHTML = "";
+
+    keranjang.forEach((item, index) => {
+        let cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+
+        let checked = selectedItems.includes(index) ? "checked" : "";
+
+        cartItem.innerHTML = `
+            <input type="checkbox" class="checkbox" onchange="toggleSelect(${index})" ${checked}>
+            <img src="${item.gambar}" alt="${item.nama}">
+            <span>${item.nama} - Rp${(item.harga * item.jumlah).toLocaleString()} (x<span id="jumlah-${index}">${item.jumlah}</span>)</span>
+            <button class="quantity-btn" onclick="ubahJumlah(${index}, -1)"> - </button>
+            <button class="quantity-btn" onclick="ubahJumlah(${index}, 1)"> + </button>
+            <button onclick="hapusItem(${index})">Hapus</button>
+        `;
+
+        cartContainer.appendChild(cartItem);
+    });
+
+    hitungTotal();
+    document.getElementById("cart-count").textContent = keranjang.length;
+}
+
 
         function toggleSelect(index) {
             if (selectedItems.includes(index)) {

@@ -25,11 +25,32 @@
             width: 150px;
             border-radius: 10px;
         }
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .quantity-btn {
+            background: none;
+            border: 2px solid #8b5e3b;
+            color: #8b5e3b;
+            font-size: 20px;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .quantity-btn:hover {
+            background: #8b5e3b;
+            color: white;
+        }
         input {
             width: 50px;
             text-align: center;
             font-size: 18px;
             margin: 10px;
+            border: 2px solid #8b5e3b;
+            border-radius: 5px;
         }
         .btn {
             background: #8b5e3b;
@@ -39,6 +60,7 @@
             cursor: pointer;
             font-size: 18px;
             border-radius: 5px;
+            margin-top: 20px;
         }
         .btn:hover {
             background: #6b4226;
@@ -53,8 +75,11 @@
         <h2 id="productName"></h2>
         <p>Harga: <span id="productPrice"></span> per item</p>
 
-        <label for="quantity">Jumlah: </label>
-        <input type="number" id="quantity" value="1" min="1">
+        <div class="quantity-container">
+            <button class="quantity-btn" onclick="ubahJumlah(-1)">-</button>
+            <input  id="quantity" value="1" min="1">
+            <button class="quantity-btn" onclick="ubahJumlah(1)">+</button>
+        </div>
 
         <h3>Total: <span id="totalPrice"></span></h3>
 
@@ -73,10 +98,24 @@
 
             // Update total harga saat jumlah berubah
             document.getElementById("quantity").addEventListener("input", function () {
-                let jumlah = parseInt(this.value);
-                let totalHarga = jumlah * product.harga;
-                document.getElementById("totalPrice").innerText = "Rp" + totalHarga.toLocaleString("id-ID");
+                updateTotal();
             });
+        }
+
+        function ubahJumlah(amount) {
+            let input = document.getElementById("quantity");
+            let jumlah = parseInt(input.value) + amount;
+
+            if (jumlah < 1) jumlah = 1; // Tidak boleh kurang dari 1
+            input.value = jumlah;
+
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let jumlah = parseInt(document.getElementById("quantity").value);
+            let totalHarga = jumlah * product.harga;
+            document.getElementById("totalPrice").innerText = "Rp" + totalHarga.toLocaleString("id-ID");
         }
 
         function proceedToPayment() {
